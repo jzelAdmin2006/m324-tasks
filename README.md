@@ -38,7 +38,7 @@
 
      ```javascript
      // index.js
-     console.log("Hello, World!");
+     console.log('Hello, World!')
      ```
 
    - Erstellen Sie eine `.gitignore` Datei und fügen Sie `node_modules` hinzu.
@@ -64,11 +64,11 @@
      ```javascript
      // Fügen Sie hier die korrekten Imports ein. Verwenden Sie import, nicht require.
 
-     const word1 = generate({ exactly: 1, minLength: 10, wordsPerString: 1 });
-     const word2 = generate();
+     const word1 = generate({ exactly: 1, minLength: 10, wordsPerString: 1 })
+     const word2 = generate()
      console.log(
-       `The ${chalk.greenBright(word1)} is ${chalk.redBright(word2)}.`
-     );
+       `The ${chalk.greenBright(word1)} is ${chalk.redBright(word2)}.`,
+     )
      ```
 
 - Führen Sie das Programm aus, um die Ausgabe zu sehen:
@@ -87,7 +87,7 @@
      npm install
      ```
 
-   ***Konflikte lösen***
+   **_Konflikte lösen_**
 
    - Führen Sie `npm install eslint@3.12.1` aus.
    - Anschliessend `npm install babel-eslint@10.1.0`
@@ -108,13 +108,13 @@
 
    ```js
    // eslint.config.js
-   import globals from "globals";
-   import pluginJs from "@eslint/js";
+   import globals from 'globals'
+   import pluginJs from '@eslint/js'
 
    export default [
      { languageOptions: { globals: globals.browser } },
      pluginJs.configs.recommended,
-   ];
+   ]
    ```
 
    - Fügen Sie das Linting-Skript hinzu:
@@ -184,22 +184,22 @@
 
    ```javascript
    export const sum = (a, b) => {
-     return a + b;
-   };
+     return a + b
+   }
    ```
 
    - Erstellen Sie `index.test.js`:
 
      ```javascript
-     import { strict as assert } from "assert";
-     import { sum } from "./index.js";
+     import { strict as assert } from 'assert'
+     import { sum } from './index.js'
 
-     describe("sum", () => {
-       it("should return 3 for 1 + 2", () => {
+     describe('sum', () => {
+       it('should return 3 for 1 + 2', () => {
          // Korrigieren Sie den Test
-         assert.equal(sum(1, 2), 4);
-       });
-     });
+         assert.equal(sum(1, 2), 4)
+       })
+     })
      ```
 
    - Fügen Sie das Test-Skript hinzu:
