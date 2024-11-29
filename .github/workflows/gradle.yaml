@@ -10,10 +10,12 @@ jobs:
       contents: write
       attestations: write
       id-token: write
+    defaults:
+      run:
+        working-directory: ./adaption/m324-tasks-adaption
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-      - run: cd adaption/m324-tasks-adaption
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
