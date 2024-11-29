@@ -1,0 +1,32 @@
+name: Build
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+      attestations: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test
+      - name: Ensure correct formatting is applied
+        run: npm run format-write
+      - name: Commit possible formatting fixes
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config --global user.name 'JZEL Bot'
+            git config --global user.email 'jo.zeller@protonmail.com'
+            git add -A
+            git commit -m "Automatically apply Prettier formatting"
+            git push
+          fi
