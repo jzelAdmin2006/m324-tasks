@@ -2,7 +2,7 @@
 
 ## Wichtig: Weitere Aufgaben gemäss Teams-Aufgabenstellung
 
-Die Zusatzaufgaben wurden in separaten Verzeichnissen gelöst.
+Die Zusatzaufgaben wurden in separaten Verzeichnissen gelöst (inkl. je separate Pipelines).
 
 ### Adaption
 
