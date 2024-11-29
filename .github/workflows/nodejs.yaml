@@ -10,6 +10,7 @@ jobs:
       contents: write
       attestations: write
       id-token: write
+      workflows: write
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -27,6 +28,6 @@ jobs:
             git config --global user.name 'JZEL Bot'
             git config --global user.email 'jo.zeller@protonmail.com'
             git add -A
-            git commit -m "Automatically apply Prettier formatting"
+            git commit -m "Automatically apply correct formatting"
             git push
           fi
