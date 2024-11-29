@@ -1,0 +1,38 @@
+name: Build
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+      attestations: write
+      id-token: write
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - run: cd adaption/m324-tasks-adaption
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Grant execution
+        run: chmod +x ./gradlew
+      - name: Build with Gradle
+        run: ./gradlew build spotlessApply
+      - name: Commit possible formatting changes
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config --global user.name 'JZEL Bot'
+            git config --global user.email 'jo.zeller@protonmail.com'
+            git add -A
+            git commit -m "Automatically apply spotless formatting"
+            git push
+          fi
+      - name: Build with Gradle (incl. linting and testing)
+        run: ./gradlew build
