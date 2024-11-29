@@ -1,5 +1,9 @@
 # ict-m324 - Programmieraufgabe 1
 
+## Wichtig: Weitere Aufgaben gemäss Teams-Aufgabenstellung
+
+Die Zusatzaufgabe "Adaption" wurde im Verzeichnis [adaption](adaption) gelöst.
+
 ## Node.js-Setup, Package Management, Linting, Formatting, Testing
 
 1. [Voraussetzungen](#voraussetzungen)
