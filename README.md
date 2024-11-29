@@ -2,7 +2,22 @@
 
 ## Wichtig: Weitere Aufgaben gemäss Teams-Aufgabenstellung
 
-Die Zusatzaufgabe "Adaption" wurde im Verzeichnis [adaption](adaption) gelöst.
+Die Zusatzaufgaben wurden in separaten Verzeichnissen gelöst.
+
+
+### Adaption
+
+«_Adaptieren Sie Prozess aus Aufgabe 3 auf eine beliebige andere Programmiersprache.
+Erstellen Sie eine kleine Applikation, die automatisch gelintet, formatiert und getestet wird._»  
+
+→ wurde unter [adaption](adaption) gelöst.
+
+### Python
+
+«_Folgen Sie dieser Anleitung: https://infmod.gitlab.io/m324/automation/swtest/ 
+Führen Sie am Ende python3 -m coverage xml -i aus und kopieren Sie die Ausgabe in das Textfeld._»  
+
+→ wurde unter [swtest](swtest) gelöst.
 
 ## Node.js-Setup, Package Management, Linting, Formatting, Testing
 
