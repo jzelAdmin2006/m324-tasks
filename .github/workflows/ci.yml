@@ -28,3 +28,8 @@ jobs:
 
       - name: Run test
         run: npm run test
+  viruscheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan for viruses
+        uses: hugoalh/scan-virus-ghaction@v0.20.1
