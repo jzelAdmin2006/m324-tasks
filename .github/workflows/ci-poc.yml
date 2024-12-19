@@ -1,0 +1,51 @@
+# https://github.com/GuillaumeFalourd/poc-github-actions
+
+name: 01 - Default Workflow / 05 - Container Workflow / 50 - Create Tag
+
+on:
+  schedule:
+    - cron: '0 0 1 1 *'
+  push:
+    branches:
+      - task-4-git-actions
+
+jobs:
+  echo-poc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Commands
+        run: |
+          echo "Hello World"
+          echo "You can run any command in your workflow that way with Github Actions"
+  run-container-poc:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://guillaumefalourd/ritchiecli:go-1.15.8
+
+    steps:
+      - name: Run Commands using Golang
+        run: |
+              sudo rit -v
+              sudo go version
+  create-tag-poc:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: 1.1.1
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check if tag already exists
+        id: check_tag
+        run: |
+          echo "TAG_EXISTS=$(git tag -l | grep -x $RELEASE_VERSION | wc -l)" >> $GITHUB_ENV
+
+      - name: Tag commit
+        if: env.TAG_EXISTS == '0'
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.RELEASE_VERSION }}
