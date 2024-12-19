@@ -18,7 +18,7 @@ jobs:
           node-version: '18.x'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run format check
         run: npm run format-check
@@ -28,8 +28,41 @@ jobs:
 
       - name: Run test
         run: npm run test
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: image-build-resources
+          path: |
+            node_modules
+            index.js
+            Dockerfile
+
   viruscheck:
     runs-on: ubuntu-latest
     steps:
       - name: Scan for viruses
         uses: hugoalh/scan-virus-ghaction@v0.20.1
+
+  docker-image-build-push:
+    needs: [lint-format-test, viruscheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: image-build-resources
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: jzeladmin2006/m324-task-4-git-actions
